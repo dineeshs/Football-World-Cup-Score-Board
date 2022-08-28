@@ -11,7 +11,11 @@ public class FootballWorldCupScoreBoard {
 	private static String MATCH = "Match";
 
 	public synchronized String createGame(String homeTeam, String awayTeam) {
-		return null;
+		if (homeTeam == null || awayTeam == null)
+			return "Team names cannot be null";
+		String matchId = FootballWorldCupScoreBoard.MATCH + ++matchOrder;
+		FootballWorldCupScoreBoard.scoreBoard.put(matchId, new MatchDetails(homeTeam, awayTeam, 0, 0, matchOrder));
+		return matchId;
 	}
 
 	public static void main(String[] args) {

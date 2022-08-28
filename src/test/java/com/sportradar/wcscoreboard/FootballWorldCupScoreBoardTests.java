@@ -21,6 +21,10 @@ public class FootballWorldCupScoreBoardTests {
 		Whitebox.setInternalState(FootballWorldCupScoreBoard.class, "matchOrder", 0);
 		Whitebox.setInternalState(FootballWorldCupScoreBoard.class, "scoreBoard",
 				new ConcurrentHashMap<String, MatchDetails>());
+		footballWorldCupScoreBoard.createGame("Mexico", "Canada");
+		footballWorldCupScoreBoard.createGame("Spain", "Brazil");
+		footballWorldCupScoreBoard.createGame("Germany", "France");
+		footballWorldCupScoreBoard.createGame("Uruguay", "Italy");
 	}
 
 	@Test
