@@ -1,5 +1,6 @@
 package com.sportradar.wcscoreboard;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -61,6 +62,33 @@ public class FootballWorldCupScoreBoardTests {
 		ConcurrentHashMap<String, MatchDetails> scoreBoard = Whitebox.getInternalState(FootballWorldCupScoreBoard.class,
 				"scoreBoard");
 		assertTrue(scoreBoard.get("Match1").getHomeTeamScore().equals(1));
+
+	}
+	
+	@Test
+	public void testUpdateGame_with_invalid_matchId() {
+		assertTrue(footballWorldCupScoreBoard.updateGame("Match100", 1, 0).equals("matchId not found"));
+
+	}
+	
+	@Test
+	public void testEndGame_with_null_matchId() {
+		assertTrue(footballWorldCupScoreBoard.endGame(null).equals("matchId cannot be null"));
+
+	}
+	
+	@Test
+	public void testEndGame_with_valid_matchId() {
+		assertTrue(footballWorldCupScoreBoard.endGame("Match1").equals("Match1 finished successfully"));
+		ConcurrentHashMap<String, MatchDetails> scoreBoard = Whitebox.getInternalState(FootballWorldCupScoreBoard.class,
+				"scoreBoard");
+		assertFalse(scoreBoard.containsKey("Match1"));
+
+	}
+	
+	@Test
+	public void testEndGame_with_invalid_matchId() {
+		assertTrue(footballWorldCupScoreBoard.endGame("Match100").equals("matchId not found"));
 
 	}
 

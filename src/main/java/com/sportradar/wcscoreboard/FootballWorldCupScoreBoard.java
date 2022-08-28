@@ -24,9 +24,14 @@ public class FootballWorldCupScoreBoard {
 		if (homeTeamScore < 0 || awayTeamScore < 0)
 			return "team scores cannot be negative values";
 		MatchDetails matchDetail = FootballWorldCupScoreBoard.scoreBoard.get(matchId);
-		matchDetail.setHomeTeamScore(homeTeamScore);
+		if(matchDetail == null) return "matchId not found";
+		matchDetail.setHomeTeamScore(homeTeamScore); 
 		matchDetail.setAwayTeamScore(awayTeamScore);
 		return matchId + " updated successfully";
+	}
+	
+	public String endGame(String matchId) {
+		return null;
 	}
 
 	public static void main(String[] args) {
