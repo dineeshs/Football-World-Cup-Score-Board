@@ -10,9 +10,10 @@ getSummaryOfGames - method to get the summary of games in progress, ordered by t
 The games with the same total score will be returned ordered by the most recently started match in the scoreboard.  
 
 ------------------------------------------------------
-Java
-TDD using Junit and Powermock
-Maven
+Java  
+TDD using Junit and Powermock  
+Maven  
+
 ------------------------------------------------------
 Added some code in the main method to output the scoreboard in the console, for the test data given in the assignment.
 
