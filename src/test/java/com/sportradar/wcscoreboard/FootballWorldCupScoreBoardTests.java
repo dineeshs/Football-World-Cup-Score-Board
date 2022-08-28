@@ -3,6 +3,7 @@ package com.sportradar.wcscoreboard;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.junit.Before;
@@ -94,20 +95,22 @@ public class FootballWorldCupScoreBoardTests {
 	
 	@Test
 	public void testGetSummaryOfGames_with_no_score_update() {
-		assertTrue(footballWorldCupScoreBoard.getSummaryOfGames().get(0).getMatchNumber() == 1);
-		assertTrue(footballWorldCupScoreBoard.getSummaryOfGames().get(1).getMatchNumber() == 2);
-		assertTrue(footballWorldCupScoreBoard.getSummaryOfGames().get(2).getMatchNumber() == 3);
-		assertTrue(footballWorldCupScoreBoard.getSummaryOfGames().get(3).getMatchNumber() == 4);
+		List<MatchDetails> summaryOfGames = footballWorldCupScoreBoard.getSummaryOfGames();
+		assertTrue(summaryOfGames.get(0).getMatchNumber() == 4);
+		assertTrue(summaryOfGames.get(1).getMatchNumber() == 3);
+		assertTrue(summaryOfGames.get(2).getMatchNumber() == 2);
+		assertTrue(summaryOfGames.get(3).getMatchNumber() == 1);
 
 	}
 	
 	@Test
 	public void testGetSummaryOfGames_with_updated_score() {
-		footballWorldCupScoreBoard.updateGame("Match4", 1, 0);
-		assertTrue(footballWorldCupScoreBoard.getSummaryOfGames().get(0).getMatchNumber() == 4);
-		assertTrue(footballWorldCupScoreBoard.getSummaryOfGames().get(1).getMatchNumber() == 1);
-		assertTrue(footballWorldCupScoreBoard.getSummaryOfGames().get(2).getMatchNumber() == 2);
-		assertTrue(footballWorldCupScoreBoard.getSummaryOfGames().get(3).getMatchNumber() == 3);
+		footballWorldCupScoreBoard.updateGame("Match1", 1, 0);
+		List<MatchDetails> summaryOfGames = footballWorldCupScoreBoard.getSummaryOfGames();
+		assertTrue(summaryOfGames.get(0).getMatchNumber() == 1);
+		assertTrue(summaryOfGames.get(1).getMatchNumber() == 4);
+		assertTrue(summaryOfGames.get(2).getMatchNumber() == 3);
+		assertTrue(summaryOfGames.get(3).getMatchNumber() == 2);
 
 	}
 	

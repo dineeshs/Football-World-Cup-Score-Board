@@ -1,7 +1,10 @@
 package com.sportradar.wcscoreboard;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 import com.sportradar.wcscoreboard.model.MatchDetails;
 
@@ -42,12 +45,22 @@ public class FootballWorldCupScoreBoard {
 	}
 	
 	public List<MatchDetails> getSummaryOfGames() {
-		return null;
-		
+		List<MatchDetails> matchDetails = new ArrayList<MatchDetails>(FootballWorldCupScoreBoard.scoreBoard.values());
+		Comparator<MatchDetails> scoreComparator = (a, b) -> {
+			return Integer.compare(a.getHomeTeamScore() + a.getAwayTeamScore(),
+					b.getHomeTeamScore() + b.getAwayTeamScore());
+		};
+		Comparator<MatchDetails> matchNumberComparator = (a, b) -> {
+			return Integer.compare(a.getMatchNumber(), b.getMatchNumber());
+		};
+		return matchDetails.stream().sorted(scoreComparator.reversed().thenComparing(matchNumberComparator.reversed()))
+				.collect(Collectors.toList());
+
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		
 
 	}
 
