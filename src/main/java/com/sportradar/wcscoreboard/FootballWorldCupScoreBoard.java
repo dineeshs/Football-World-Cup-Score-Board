@@ -14,6 +14,12 @@ public class FootballWorldCupScoreBoard {
 	private static int matchOrder = 0;
 	private static String MATCH = "Match";
 
+	/**
+	 * This method creates a new game and add it to the scoreboard with 0 goals for both teams
+	 * @param homeTeam - name of the home team playing the game
+	 * @param awayTeam - name of the away team playing the game
+	 * @return - returns the string matchId which uniquely identifies each match
+	 */
 	public synchronized String createGame(String homeTeam, String awayTeam) {
 		if (homeTeam == null || awayTeam == null)
 			return "Team names cannot be null";
@@ -22,6 +28,13 @@ public class FootballWorldCupScoreBoard {
 		return matchId;
 	}
 	
+	/**
+	 * This method updates the game, with the scores
+	 * @param matchId - the unique id for the match
+	 * @param homeTeamScore - the no of goals scored by home team
+	 * @param awayTeamScore - the no of goals scored by away team
+	 * @return - returns string value which describes the operation
+	 */
 	public String updateGame(String matchId, Integer homeTeamScore, Integer awayTeamScore) {
 		if (matchId == null)
 			return "matchId cannot be null";
@@ -29,11 +42,17 @@ public class FootballWorldCupScoreBoard {
 			return "team scores cannot be negative values";
 		MatchDetails matchDetail = FootballWorldCupScoreBoard.scoreBoard.get(matchId);
 		if(matchDetail == null) return "matchId not found";
+		//updating scores
 		matchDetail.setHomeTeamScore(homeTeamScore); 
 		matchDetail.setAwayTeamScore(awayTeamScore);
 		return matchId + " updated successfully";
 	}
 	
+	/**
+	 * This method ends the game, removes it from the scoreboard
+	 * @param matchId - unique id for the match
+	 * @return - returns string value which describes the operation
+	 */
 	public String endGame(String matchId) {
 		if (matchId == null)
 			return "matchId cannot be null";
@@ -44,12 +63,20 @@ public class FootballWorldCupScoreBoard {
 		return matchId + " finished successfully";
 	}
 	
+	/**
+	 * This method returns the list of games in progress, ordered by their total score.
+	 * The games with the same total score will be returned ordered by the 
+	 * most recently started match in the scoreboard.
+	 * @return - return a list of MatchDetails object 
+	 */
 	public List<MatchDetails> getSummaryOfGames() {
 		List<MatchDetails> matchDetails = new ArrayList<MatchDetails>(FootballWorldCupScoreBoard.scoreBoard.values());
+		//comparator to sort the objects in the order of total score
 		Comparator<MatchDetails> scoreComparator = (a, b) -> {
 			return Integer.compare(a.getHomeTeamScore() + a.getAwayTeamScore(),
 					b.getHomeTeamScore() + b.getAwayTeamScore());
 		};
+		//comparator to sort the objects in the order of match number
 		Comparator<MatchDetails> matchNumberComparator = (a, b) -> {
 			return Integer.compare(a.getMatchNumber(), b.getMatchNumber());
 		};
