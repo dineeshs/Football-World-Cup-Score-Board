@@ -2,11 +2,13 @@
 ------------------------------------------------------
 Implementation of a Live Football World Cup ScoreBoard
 ------------------------------------------------------
-createGame - method to create a new game and add it to the scoreboard.
-updateGame - method to update a game in progress with new scores.
-endGame - method to end a game in progress and remove from the scoreboard.
-getSummaryOfGames - method to get the summary of games in progress, ordered by their total score.
-The games with the same total score will be returned ordered by the most recently started match in the scoreboard.
+
+createGame - method to create a new game and add it to the scoreboard.  
+updateGame - method to update a game in progress with new scores.  
+endGame - method to end a game in progress and remove from the scoreboard.  
+getSummaryOfGames - method to get the summary of games in progress, ordered by their total score.  
+The games with the same total score will be returned ordered by the most recently started match in the scoreboard.  
+
 ------------------------------------------------------
 Java
 TDD using Junit and Powermock
