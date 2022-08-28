@@ -1,10 +1,22 @@
 # Football-World-Cup-Score-Board
+------------------------------------------------------
 Implementation of a Live Football World Cup ScoreBoard
-
+------------------------------------------------------
+createGame - method to create a new game and add it to the scoreboard.
+updateGame - method to update a game in progress with new scores.
+endGame - method to end a game in progress and remove from the scoreboard.
+getSummaryOfGames - method to get the summary of games in progress, ordered by their total score.
+The games with the same total score will be returned ordered by the most recently started match in the scoreboard.
+------------------------------------------------------
+Java
+TDD using Junit and Powermock
+Maven
+------------------------------------------------------
 Added some code in the main method to output the scoreboard in the console, for the test data given in the assignment.
 
 The code was added in the main method so that the reviewer can view the output by just running the Java application.
 
+On running the java code, below details will be displayed in the console -
 ------------------------------------------
 Score board of games - 
 After creation - From recent to old
