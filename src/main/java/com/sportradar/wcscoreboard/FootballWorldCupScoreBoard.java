@@ -17,6 +17,10 @@ public class FootballWorldCupScoreBoard {
 		FootballWorldCupScoreBoard.scoreBoard.put(matchId, new MatchDetails(homeTeam, awayTeam, 0, 0, matchOrder));
 		return matchId;
 	}
+	
+	public String updateGame(String matchId, Integer homeTeamScore, Integer awayTeamScore) {
+		return null;
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

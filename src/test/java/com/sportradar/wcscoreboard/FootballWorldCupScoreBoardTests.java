@@ -10,6 +10,7 @@ import org.powermock.reflect.Whitebox;
 
 import com.sportradar.wcscoreboard.model.MatchDetails;
 
+
 public class FootballWorldCupScoreBoardTests {
 
 	public static FootballWorldCupScoreBoard footballWorldCupScoreBoard;
@@ -40,6 +41,27 @@ public class FootballWorldCupScoreBoardTests {
 		ConcurrentHashMap<String, MatchDetails> scoreBoard = Whitebox.getInternalState(FootballWorldCupScoreBoard.class,
 				"scoreBoard");
 		assertTrue(scoreBoard.size() == 5);
+	}
+	
+	@Test
+	public void testUpdateGame_with_null_matchId() {
+
+		assertTrue(footballWorldCupScoreBoard.updateGame(null, 1, 0).equals("matchId cannot be null"));
+	}
+
+	@Test
+	public void testUpdateGame_with_negative_scores() {
+
+		assertTrue(footballWorldCupScoreBoard.updateGame("Match1", -1, 0).equals("team scores cannot be negative values"));
+	}
+
+	@Test
+	public void testUpdateGame_with_valid_scores_and_matchId() {
+		assertTrue(footballWorldCupScoreBoard.updateGame("Match1", 1, 0).equals("Match1 updated successfully"));
+		ConcurrentHashMap<String, MatchDetails> scoreBoard = Whitebox.getInternalState(FootballWorldCupScoreBoard.class,
+				"scoreBoard");
+		assertTrue(scoreBoard.get("Match1").getHomeTeamScore().equals(1));
+
 	}
 
 }
