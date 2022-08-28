@@ -60,7 +60,37 @@ public class FootballWorldCupScoreBoard {
 
 	public static void main(String[] args) {
 		
-		
+		FootballWorldCupScoreBoard scoreBoardMaker = new FootballWorldCupScoreBoard();
+		scoreBoardMaker.createGame("Mexico", "Canada");
+		scoreBoardMaker.createGame("Spain", "Brazil");
+		scoreBoardMaker.createGame("Germany", "France");
+		scoreBoardMaker.createGame("Uruguay", "Italy");
+		scoreBoardMaker.createGame("Argentina", "Australia");
+		List<MatchDetails> details1 = scoreBoardMaker.getSummaryOfGames();
+		System.out.println("------------------------------------------");
+		System.out.println("Score board of games - ");
+		System.out.println("After creation - From recent to old");
+		System.out.println("------------------------------------------");
+		for (MatchDetails matchDetail : details1) {
+			System.out.println(matchDetail.getMatchNumber() + ". " + matchDetail.getHomeTeam() + " "
+					+ matchDetail.getHomeTeamScore() + " - " + matchDetail.getAwayTeam() + " "
+					+ matchDetail.getAwayTeamScore());
+		}
+		System.out.println("------------------------------------------");
+		System.out.println("Score board of games - ");
+		System.out.println("After score updation - From recent to old");
+		System.out.println("------------------------------------------");
+		scoreBoardMaker.updateGame("Match1", 0, 5);
+		scoreBoardMaker.updateGame("Match2", 10, 2);
+		scoreBoardMaker.updateGame("Match3", 2, 2);
+		scoreBoardMaker.updateGame("Match4", 6, 6);
+		scoreBoardMaker.updateGame("Match5", 3, 1);
+		List<MatchDetails> details2 = scoreBoardMaker.getSummaryOfGames();
+		int i = 0;
+		for (MatchDetails matchDetail : details2) {
+			System.out.println(++i + ". " + matchDetail.getHomeTeam() + " " + matchDetail.getHomeTeamScore() + " - "
+					+ matchDetail.getAwayTeam() + " " + matchDetail.getAwayTeamScore());
+	}
 
 	}
 
