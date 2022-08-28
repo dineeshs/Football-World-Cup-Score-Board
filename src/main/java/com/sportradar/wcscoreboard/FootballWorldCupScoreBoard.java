@@ -31,7 +31,13 @@ public class FootballWorldCupScoreBoard {
 	}
 	
 	public String endGame(String matchId) {
-		return null;
+		if (matchId == null)
+			return "matchId cannot be null";
+		if (FootballWorldCupScoreBoard.scoreBoard.containsKey(matchId))
+			FootballWorldCupScoreBoard.scoreBoard.remove(matchId);
+		else
+			return "matchId not found";
+		return matchId + " finished successfully";
 	}
 
 	public static void main(String[] args) {
