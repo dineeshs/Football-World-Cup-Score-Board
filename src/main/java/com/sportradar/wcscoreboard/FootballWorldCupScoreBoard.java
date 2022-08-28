@@ -1,5 +1,6 @@
 package com.sportradar.wcscoreboard;
 
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.sportradar.wcscoreboard.model.MatchDetails;
@@ -38,6 +39,11 @@ public class FootballWorldCupScoreBoard {
 		else
 			return "matchId not found";
 		return matchId + " finished successfully";
+	}
+	
+	public List<MatchDetails> getSummaryOfGames() {
+		return null;
+		
 	}
 
 	public static void main(String[] args) {

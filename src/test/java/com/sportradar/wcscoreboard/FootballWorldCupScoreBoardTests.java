@@ -91,5 +91,32 @@ public class FootballWorldCupScoreBoardTests {
 		assertTrue(footballWorldCupScoreBoard.endGame("Match100").equals("matchId not found"));
 
 	}
+	
+	@Test
+	public void testGetSummaryOfGames_with_no_score_update() {
+		assertTrue(footballWorldCupScoreBoard.getSummaryOfGames().get(0).getMatchNumber() == 1);
+		assertTrue(footballWorldCupScoreBoard.getSummaryOfGames().get(1).getMatchNumber() == 2);
+		assertTrue(footballWorldCupScoreBoard.getSummaryOfGames().get(2).getMatchNumber() == 3);
+		assertTrue(footballWorldCupScoreBoard.getSummaryOfGames().get(3).getMatchNumber() == 4);
+
+	}
+	
+	@Test
+	public void testGetSummaryOfGames_with_updated_score() {
+		footballWorldCupScoreBoard.updateGame("Match4", 1, 0);
+		assertTrue(footballWorldCupScoreBoard.getSummaryOfGames().get(0).getMatchNumber() == 4);
+		assertTrue(footballWorldCupScoreBoard.getSummaryOfGames().get(1).getMatchNumber() == 1);
+		assertTrue(footballWorldCupScoreBoard.getSummaryOfGames().get(2).getMatchNumber() == 2);
+		assertTrue(footballWorldCupScoreBoard.getSummaryOfGames().get(3).getMatchNumber() == 3);
+
+	}
+	
+	@Test
+	public void testGetSummaryOfGames_when_there_are_no_games_played() {
+		Whitebox.setInternalState(FootballWorldCupScoreBoard.class, "scoreBoard",
+				new ConcurrentHashMap<String, MatchDetails>());
+		assertTrue(footballWorldCupScoreBoard.getSummaryOfGames().size() == 0);
+
+	}
 
 }
